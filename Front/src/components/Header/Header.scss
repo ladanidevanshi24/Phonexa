@@ -1,0 +1,235 @@
+@import "../../css-config/mixins.scss";
+
+.main-header-b {
+  width: 100%;
+  padding: 0 20px;
+  z-index: 99;
+  background-color: white;
+  color: #212121;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  @include md {
+    padding: 0 40px;
+  }
+  .header-content-a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+    @include md {
+      height: 80px;
+    }
+  }
+  .leftt {
+    list-style-type: none;
+    display: none;
+    gap: 25px;
+    @include md {
+      display: flex;
+      margin-top: 20px;
+    }
+    li {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      cursor: pointer;
+      &:hover {
+        opacity: 0.6;
+      }
+    }
+  }
+  .center {
+    font-size: 22px;
+    font-weight: 700;
+    cursor: pointer;
+    @include md {
+      font-size: 34px;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+  .right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    @include md {
+      gap: 25px;
+    }
+    svg {
+      font-size: 20px;
+      cursor: pointer;
+      @include md {
+        font-size: 24px;
+      }
+      &:hover {
+        opacity: 0.6;
+      }
+    }
+    .cart-icon {
+      position: relative;
+      span {
+        min-width: 20px;
+        text-align: center;
+        background: #8e2de2;
+        padding: 2.5px;
+        position: absolute;
+        top: -5px;
+        right: -12px;
+        font-size: 12px;
+        line-height: 1;
+        border-radius: 10px;
+      }
+    }
+    .user-icon-container {
+      position: relative;
+      .profile-dropdown {
+        position: absolute;
+        top: 40px;
+        right: 0;
+        background-color: white;
+        color: #212121;
+        width: 250px;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        z-index: 100;
+        animation: SlideDown 0.3s ease-out;
+        
+        .profile-header {
+          border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+          margin-bottom: 15px;
+          padding-bottom: 10px;
+          .name {
+            font-size: 16px;
+            font-weight: 700;
+            margin: 0;
+            color: #8e2de2;
+          }
+          .email {
+            font-size: 12px;
+            color: rgba(0, 0, 0, 0.6);
+            margin: 0;
+          }
+        }
+        
+        .profile-actions {
+          margin-top: 10px;
+        }
+      }
+    }
+  }
+  .mobile-menu-icon {
+    display: flex;
+    font-size: 24px;
+    cursor: pointer;
+    @include md {
+      display: none;
+    }
+  }
+  &.sticky-header {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #212121;
+    position: sticky;
+    top: 0;
+    transform: translateY(-60px);
+    animation: StickyHeader 0.3s ease forwards;
+  }
+}
+
+.mobile-menu-drawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100%;
+    background: white;
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    padding: 20px;
+    color: #212121;
+    box-shadow: 10px 0 30px rgba(0,0,0,0.1);
+
+    &.show {
+        transform: translateX(0);
+    }
+
+    .drawer-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        svg {
+            font-size: 24px;
+            cursor: pointer;
+        }
+    }
+
+    .mobile-nav-links {
+        list-style: none;
+        padding: 0;
+        
+        li {
+            padding: 15px 0;
+            font-size: 18px;
+            font-weight: 500;
+            text-transform: uppercase;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+            cursor: pointer;
+
+            &:hover {
+                color: #8e2de2;
+            }
+        }
+    }
+}
+
+.drawer-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes StickyHeader {
+  0% {
+    transform: translateY(-60px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes SlideDown {
+  0% {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

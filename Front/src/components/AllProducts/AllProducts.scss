@@ -1,0 +1,231 @@
+@import "../../css-config/mixins.scss";
+
+.all-products-container {
+  padding: 40px 0;
+  min-height: 80vh;
+  background-color: #f8f9fa; // Light background
+  color: #333; // Dark text
+
+  .layout {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    @include md {
+      flex-direction: row;
+    }
+  }
+
+  .filters-sidebar {
+    flex: 0 0 280px;
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    height: fit-content;
+    position: sticky;
+    top: 100px;
+    display: none;
+
+    @include md {
+      display: block;
+    }
+
+    &.show {
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1000;
+      border-radius: 0;
+      overflow-y: auto;
+      background: white;
+    }
+
+    .filter-section {
+      margin-bottom: 30px;
+
+      h3 {
+        font-size: 16px;
+        margin-bottom: 15px;
+        color: #212121;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-weight: 700;
+        border-bottom: 2px solid #8e2de2;
+        display: inline-block;
+        padding-bottom: 2px;
+      }
+
+      .search-input {
+        width: 100%;
+        padding: 12px 15px;
+        background: #f1f1f1;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        color: #333;
+        outline: none;
+        transition: all 0.3s ease;
+
+        &:focus {
+          border-color: #8e2de2;
+          background: white;
+          box-shadow: 0 0 0 3px rgba(142, 45, 226, 0.1);
+        }
+      }
+
+      .category-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        .category-item {
+          cursor: pointer;
+          padding: 10px 15px;
+          border-radius: 8px;
+          transition: all 0.3s ease;
+          font-size: 14px;
+          color: #555;
+          font-weight: 500;
+
+          &:hover {
+            background: rgba(142, 45, 226, 0.05);
+            color: #8e2de2;
+          }
+
+          &.active {
+            background: #8e2de2;
+            color: white;
+          }
+        }
+      }
+
+      .price-filter {
+        .range-slider {
+          width: 100%;
+          accent-color: #8e2de2;
+          cursor: pointer;
+        }
+        .price-values {
+          display: flex;
+          justify-content: space-between;
+          margin-top: 10px;
+          font-size: 14px;
+          color: #666;
+          font-weight: 600;
+        }
+      }
+    }
+
+    .clear-filters {
+      width: 100%;
+      padding: 14px;
+      background: white;
+      border: 2px solid #8e2de2;
+      color: #8e2de2;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 12px;
+
+      &:hover {
+        background: #8e2de2;
+        color: white;
+      }
+    }
+  }
+
+  .content-section {
+    flex: 1;
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #eee;
+
+      h2 {
+        font-size: 28px;
+        color: #212121;
+        font-weight: 700;
+      }
+
+      .result-count {
+        color: #888;
+        font-size: 14px;
+        font-weight: 500;
+      }
+    }
+
+    .no-results {
+      text-align: center;
+      padding: 80px 20px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+      
+      h3 {
+        margin-bottom: 10px;
+        color: #333;
+        font-size: 22px;
+      }
+      p {
+        color: #777;
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+.mobile-filter-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 15px;
+  background: #212121;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 1px;
+
+  @include md {
+    display: none;
+  }
+}
+
+// Close button for mobile filter menu
+.sidebar-close-btn {
+  display: block; // Visible on mobile by default
+  margin-bottom: 20px;
+  background: #f1f1f1;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 20px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @include md {
+    display: none; // Hidden on desktop
+  }
+}
